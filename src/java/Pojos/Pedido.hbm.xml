@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/07/2015 11:31:24 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.Pedido" table="PEDIDO" catalog="tienda" optimistic-lock="version">
+        <id name="idPedido" type="java.lang.Integer">
+            <column name="Id_Pedido" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="Pojos.Cliente" fetch="select">
+            <column name="Id_cliente" />
+        </many-to-one>
+        <many-to-one name="factura" class="Pojos.Factura" fetch="select">
+            <column name="Id_Factura" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="0" />
+        </property>
+        <property name="formaPago" type="string">
+            <column name="Forma_pago" length="45" />
+        </property>
+        <property name="estado" type="char">
+            <column name="estado" length="1" not-null="true" />
+        </property>
+        <set name="detalles" table="DETALLE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_pedido" not-null="true" />
+            </key>
+            <one-to-many class="Pojos.Detalle" />
+        </set>
+    </class>
+</hibernate-mapping>
