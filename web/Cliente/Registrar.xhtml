@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../Plantilla/default.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="RegistrarCliente">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Nombre"/>
+                        <p:inputText id="nombre"/>
+                        <h:outputText value="Apellido"/>
+                        <p:inputText id="apellido"/>
+                        <h:outputText value="Telefono"/>
+                        <p:inputText id="telefono"/>
+                        <h:outputText value="Correo Eelectronico"/>
+                        <p:inputText id="correo"/>
+                        <h:outputText value="Ciudad"/>
+                        <p:inputText id="ciudad"/>
+                        <h:outputText value="Pais"/>
+                        <p:inputText id="pais"/>
+                        <h:outputText value="contraseña"/>
+                        <p:password id="pass"/>
+                        <h:outputText value="confirmar contraseña"/>
+                        <p:password id="rePass"/>
+                        <h:panelGroup></h:panelGroup>
+                        <p:commandButton value="Registrarse"/>
+                        
+                    </h:panelGrid>
+                    
+               </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
