@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -16,22 +17,36 @@
                 <h:form id="RegistrarCliente">
                     <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
                     <h:panelGrid columns="2">
-                        <h:outputText value="Nombre"/>
-                        <p:inputText id="nombre" value="#{mbrCliente.getUnCliente().nombre}"/>
-                        <h:outputText value="Apellido"/>
-                        <p:inputText id="apellido" value="#{mbrCliente.getUnCliente().apellido}"/>
-                        <h:outputText value="Telefono"/>
-                        <p:inputText id="telefono" value="#{mbrCliente.getUnCliente().telefono}"/>
-                        <h:outputText value="Correo Eelectronico"/>
-                        <p:inputText id="correo" value="#{mbrCliente.getUnCliente().email}"/>
-                        <h:outputText value="Ciudad"/>
-                        <p:inputText id="ciudad" value="#{mbrCliente.getUnCliente().ciudad}"/>
-                        <h:outputText value="Pais"/>
-                        <p:inputText id="pais" value="#{mbrCliente.getUnCliente().pais}"/>
-                        <h:outputText value="contraseña"/>
-                        <p:password id="pass" value="#{mbrCliente.getUnCliente().password}"/>
-                        <h:outputText value="confirmar contraseña"/>
-                        <p:password id="rePass" value="#{mbrCliente.rePass}"/>
+                        <p:outputLabel value="Nombre" for="nombre"/>
+                        <p:inputText id="nombre" label="Nombre" value="#{mbrCliente.getUnCliente().nombre}"> 
+                            <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                        <p:outputLabel value="Apellido"  for="apellido"/>
+                        <p:inputText id="apellido" label="Apellido" value="#{mbrCliente.getUnCliente().apellido}">
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                        <p:outputLabel value="Telefono" for="telefono"/>
+                        <p:inputText id="telefono" label="Telefono" value="#{mbrCliente.getUnCliente().telefono}"/>
+                        <p:outputLabel value="Correo Eelectronico" for="correo"/>
+                        <p:inputText id="correo" label="Correo" value="#{mbrCliente.getUnCliente().email}">
+                          <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                        <p:outputLabel value="Ciudad" for="ciudad"/>
+                        <p:inputText id="ciudad" label="Ciudad" value="#{mbrCliente.getUnCliente().ciudad}">
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                        <p:outputLabel value="Pais" for="pais"/>
+                        <p:inputText id="pais"  label="Pais" value="#{mbrCliente.getUnCliente().pais}">
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                        <p:outputLabel value="contraseña" for="pass"/>
+                        <p:password id="pass" label="Pass" value="#{mbrCliente.getUnCliente().password}">
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:password>
+                        <p:outputLabel value="confirmar contraseña" for="rePass"/>
+                        <p:password id="rePass" label="rePass" value="#{mbrCliente.rePass}">
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:password> 
                         <h:panelGroup></h:panelGroup>
                         <p:commandButton value="Registrarse" action="#{mbrCliente.registrar()}"/>
                         

@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -41,6 +42,7 @@ public class MbrCliente {
         DAOCliente daoCliente = new DAOCliente();
         daoCliente.registrar(this.unCliente);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "El registro se realizo satisfactoriamente"));
+        RequestContext.getCurrentInstance().execute("limpiarFormulario('RegistrarCliente')");
         return "/Cliente/Registrar";
         
     }
