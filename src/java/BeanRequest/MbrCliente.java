@@ -5,10 +5,13 @@
  */
 package BeanRequest;
 
+import Clases.Encriptado;
 import DAO.DAOCliente;
 import Pojos.Cliente;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -29,9 +32,16 @@ public class MbrCliente {
         
     }
     public String registrar() throws Exception{
+        if(!(this.unCliente.getPassword().equalsIgnoreCase(this.rePass)))
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Las contraseñas no coinciden"));
+            return "/Cliente/Registrar";
+        }
+        this.unCliente.setPassword(Encriptado.sha512(this.unCliente.getPassword()) );
         DAOCliente daoCliente = new DAOCliente();
         daoCliente.registrar(this.unCliente);
-        return "Cliente/Registrar";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "El registro se realizo satisfactoriamente"));
+        return "/Cliente/Registrar";
         
     }
 

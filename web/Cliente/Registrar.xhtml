@@ -14,6 +14,7 @@
 
             <ui:define name="content">
                 <h:form id="RegistrarCliente">
+                    <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
                     <h:panelGrid columns="2">
                         <h:outputText value="Nombre"/>
                         <p:inputText id="nombre" value="#{mbrCliente.getUnCliente().nombre}"/>
