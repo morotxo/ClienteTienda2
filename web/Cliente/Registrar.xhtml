@@ -16,23 +16,23 @@
                 <h:form id="RegistrarCliente">
                     <h:panelGrid columns="2">
                         <h:outputText value="Nombre"/>
-                        <p:inputText id="nombre"/>
+                        <p:inputText id="nombre" value="#{mbrCliente.getUnCliente().nombre}"/>
                         <h:outputText value="Apellido"/>
-                        <p:inputText id="apellido"/>
+                        <p:inputText id="apellido" value="#{mbrCliente.getUnCliente().apellido}"/>
                         <h:outputText value="Telefono"/>
-                        <p:inputText id="telefono"/>
+                        <p:inputText id="telefono" value="#{mbrCliente.getUnCliente().telefono}"/>
                         <h:outputText value="Correo Eelectronico"/>
-                        <p:inputText id="correo"/>
+                        <p:inputText id="correo" value="#{mbrCliente.getUnCliente().email}"/>
                         <h:outputText value="Ciudad"/>
-                        <p:inputText id="ciudad"/>
+                        <p:inputText id="ciudad" value="#{mbrCliente.getUnCliente().ciudad}"/>
                         <h:outputText value="Pais"/>
-                        <p:inputText id="pais"/>
+                        <p:inputText id="pais" value="#{mbrCliente.getUnCliente().pais}"/>
                         <h:outputText value="contraseña"/>
-                        <p:password id="pass"/>
+                        <p:password id="pass" value="#{mbrCliente.getUnCliente().password}"/>
                         <h:outputText value="confirmar contraseña"/>
-                        <p:password id="rePass"/>
+                        <p:password id="rePass" value="#{mbrCliente.rePass}"/>
                         <h:panelGroup></h:panelGroup>
-                        <p:commandButton value="Registrarse"/>
+                        <p:commandButton value="Registrarse" action="#{mbrCliente.registrar()}"/>
                         
                     </h:panelGrid>
                     
