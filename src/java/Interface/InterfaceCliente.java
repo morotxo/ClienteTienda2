@@ -6,12 +6,14 @@
 package Interface;
 
 import Pojos.Cliente;
+import org.hibernate.Session;
 
 /**
  *
  * @author emejia
  */
 public interface InterfaceCliente {
-    public boolean registrar(Cliente unCliente) throws Exception;
+    public boolean registrar(Session sesion, Cliente unCliente) throws Exception;
+    public Cliente getByEmail(Session sesion, String correo)throws Exception;
     
 }
