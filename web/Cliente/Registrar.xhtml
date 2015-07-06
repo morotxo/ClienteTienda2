@@ -30,6 +30,7 @@
                         <p:outputLabel value="Correo Eelectronico" for="correo"/>
                         <p:inputText id="correo" label="Correo" value="#{mbrCliente.getUnCliente().email}">
                           <f:validator validatorId="validadorEspacio"/>
+                          <f:validator validatorId="validadorEmail"/>
                         </p:inputText> 
                         <p:outputLabel value="Ciudad" for="ciudad"/>
                         <p:inputText id="ciudad" label="Ciudad" value="#{mbrCliente.getUnCliente().ciudad}">
