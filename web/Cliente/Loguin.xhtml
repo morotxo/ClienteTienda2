@@ -18,10 +18,15 @@
                 <h:form id="Loguin">
                     <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
                     <h:panelGrid columns="2">
-                          <p:outputLabel value="Nombre" for="nombre"/>
-                        <p:inputText id="nombre" label="Nombre" value="#{mbrCliente.getUnCliente().nombre}"> 
+                          <p:outputLabel value="Usuario" for="user"/>
+                        <p:inputText id="user" label="Usuario" > 
                             <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
+                          <p:outputLabel value="Contraseña" for="password"/>
+                        <p:inputText id="password" label="Password" > 
+                            <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText> 
+                          <p:commandButton value="Loguin" action="#{mbrCliente.loguin()}"/>
                     </h:panelGrid>
                 </h:form> 
             </ui:define>

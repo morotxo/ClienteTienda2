@@ -104,4 +104,10 @@ public class MbrCliente {
         this.rePass = rePass;
     }
     
+    
+    public String loguin(){
+        return null;
+        
+    }
+    
 }
