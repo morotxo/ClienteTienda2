@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -53,6 +54,9 @@ public class MbSLogin implements Serializable{
         
             if(cliente!=null){
                 if(cliente.getPassword().equals(Encriptado.sha512(this.contrasena))){
+                    HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    httpSession.setAttribute(correo, this.correo);
+                    
                     return "/index";
                 }                
             }
@@ -84,7 +88,8 @@ public class MbSLogin implements Serializable{
     public String cerrarSesion(){
         this.contrasena=null;
         this.correo=null;
-        
+        HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        httpSession.invalidate();        
         return "/index";
     }
     
