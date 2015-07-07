@@ -14,38 +14,40 @@
             </ui:define>
 
             <ui:define name="content">
+                <h2>Registrar Usuario</h2>
+                <hr/>
                 <h:form id="RegistrarCliente">
                     <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Nombre" for="nombre"/>
-                        <p:inputText id="nombre" label="Nombre" value="#{mbrCliente.getUnCliente().nombre}"> 
+                        <p:inputText id="nombre" label="Nombre" value="#{mbrCliente.getUnCliente().nombre}" size="50"> 
                             <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
                         <p:outputLabel value="Apellido"  for="apellido"/>
-                        <p:inputText id="apellido" label="Apellido" value="#{mbrCliente.getUnCliente().apellido}">
+                        <p:inputText id="apellido" label="Apellido" value="#{mbrCliente.getUnCliente().apellido}" size="50">
                               <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
                         <p:outputLabel value="Telefono" for="telefono"/>
-                        <p:inputText id="telefono" label="Telefono" value="#{mbrCliente.getUnCliente().telefono}"/>
+                        <p:inputText id="telefono" label="Telefono" value="#{mbrCliente.getUnCliente().telefono}" size="50"/>
                         <p:outputLabel value="Correo Eelectronico" for="correo"/>
-                        <p:inputText id="correo" label="Correo" value="#{mbrCliente.getUnCliente().email}">
+                        <p:inputText id="correo" label="Correo" value="#{mbrCliente.getUnCliente().email}" size="50">
                           <f:validator validatorId="validadorEspacio"/>
                           <f:validator validatorId="validadorEmail"/>
                         </p:inputText> 
                         <p:outputLabel value="Ciudad" for="ciudad"/>
-                        <p:inputText id="ciudad" label="Ciudad" value="#{mbrCliente.getUnCliente().ciudad}">
+                        <p:inputText id="ciudad" label="Ciudad" value="#{mbrCliente.getUnCliente().ciudad}" size="50">
                               <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
                         <p:outputLabel value="Pais" for="pais"/>
-                        <p:inputText id="pais"  label="Pais" value="#{mbrCliente.getUnCliente().pais}">
+                        <p:inputText id="pais"  label="Pais" value="#{mbrCliente.getUnCliente().pais}" size="50">
                               <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
-                        <p:outputLabel value="contraseña" for="pass"/>
-                        <p:password id="pass" label="Pass" value="#{mbrCliente.getUnCliente().password}">
+                        <p:outputLabel value="Contraseña" for="pass"/>
+                        <p:password id="pass" label="Pass" value="#{mbrCliente.getUnCliente().password}" size="50">
                               <f:validator validatorId="validadorEspacio"/>
                         </p:password>
-                        <p:outputLabel value="confirmar contraseña" for="rePass"/>
-                        <p:password id="rePass" label="rePass" value="#{mbrCliente.rePass}">
+                        <p:outputLabel value="Repertir Contraseña" for="rePass"/>
+                        <p:password id="rePass" label="rePass" value="#{mbrCliente.rePass}" size="50">
                               <f:validator validatorId="validadorEspacio"/>
                         </p:password> 
                         <h:panelGroup></h:panelGroup>

@@ -15,18 +15,20 @@
             </ui:define>
 
             <ui:define name="content">
+                <h2>Inicio de sesión</h2>
+                <hr/>
                 <h:form id="Loguin">
-                    <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
+                    <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/> 
                     <h:panelGrid columns="2">
-                          <p:outputLabel value="Usuario" for="user"/>
-                        <p:inputText id="user" label="Usuario" > 
+                        <p:outputLabel value="Usuario" for="user"/>
+                        <p:inputText id="user" label="Usuario" size="40" value="#{mbSLogin.correo}"> 
                             <f:validator validatorId="validadorEspacio"/>
                         </p:inputText> 
-                          <p:outputLabel value="Contraseña" for="password"/>
-                        <p:inputText id="password" label="Password" > 
+                            <p:outputLabel value="Contraseña" for="password"/>
+                        <p:password id="password" label="Password" size="40" value="#{mbSLogin.contrasena}"> 
                             <f:validator validatorId="validadorEspacio"/>
-                        </p:inputText> 
-                          <p:commandButton value="Loguin" action="#{mbrCliente.loguin()}"/>
+                        </p:password> 
+                            <p:commandButton value="Loguin" action="#{mbSLogin.login()}" update="Loguin"/>
                     </h:panelGrid>
                 </h:form> 
             </ui:define>
