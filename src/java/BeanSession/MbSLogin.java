@@ -58,6 +58,8 @@ public class MbSLogin implements Serializable{
             }
             
             this.transaccion.commit();
+            this.contrasena=null;
+            this.correo=null;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error de Acceso: "," Usuario o Contraseña Incorrecta"));
             
             return "/Cliente/Loguin";
@@ -77,6 +79,13 @@ public class MbSLogin implements Serializable{
                 this.session.close();
             }
         }
+    }
+    
+    public String cerrarSesion(){
+        this.contrasena=null;
+        this.correo=null;
+        
+        return "/index";
     }
     
     public String getCorreo() {

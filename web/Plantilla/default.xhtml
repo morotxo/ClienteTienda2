@@ -23,9 +23,10 @@
                 <div id="divSesionUsuario">
                     <span>
                          <b>Usuario: </b>
+                         <p:outputLabel value="#{mbSLogin.correo==null ? 'Hello. Sing In' : mbSLogin.correo}"/>
                     </span>
                    
-                    <p:commandButton value="Logout" icon="ui-icon-locked"/>
+                    <p:commandButton value="Logout" icon="ui-icon-locked" action="#{mbSLogin.cerrarSesion()}"/>
                 </div>
                 <p:menubar>
                     <p:menuitem style="color:black; margin-left:50px" value="Inicio" icon="ui-icon-home" outcome="/index" />
