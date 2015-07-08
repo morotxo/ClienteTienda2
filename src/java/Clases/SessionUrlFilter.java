@@ -39,7 +39,12 @@ public class SessionUrlFilter implements Filter{
         
         String requestUrl = req.getRequestURL().toString();
         
-        if(session.getAttribute("correo")==null&&requestUrl.contains("/Cliente/Registrar.xhtml")){
+        
+        
+        
+        if(session.getAttribute("correo")==null&&requestUrl.contains("index.xhtml")){
+            
+                       
             res.sendRedirect(req.getContextPath()+"/faces/index.xhtml");
         }else{
             chain.doFilter(request, response);

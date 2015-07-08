@@ -61,11 +61,11 @@ public class MbrCliente {
         
             this.unCliente.setPassword(Encriptado.sha512(this.unCliente.getPassword()) );
             daoCliente.registrar(this.sesion,this.unCliente);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "El registro se realizo satisfactoriamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto: ","El registro se realizo satisfactoriamente"));            
             this.transaccion.commit();
             RequestContext.getCurrentInstance().execute("limpiarFormulario('RegistrarCliente')");
             
-            return "/Cliente/Registrar";
+            return "/Cliente/Loguin";
             
         }
         catch(Exception ex)
