@@ -17,8 +17,8 @@
                 <h2/> Lista Usuarios <h2/>
                 <hr/>
                 <h:form id="ListaProductos">
-                    <p:growl id ="mensajeGeneral" sticky="false"/>
-                    <p:dataTable id="tablaPoductos" var="item" value="#{mbrProducto.listarProductos}" paginator="true" rows="3" >
+                    <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
+                    <p:dataTable id="tablaPoductos" var="item" value="#{mbrProducto.all}" paginator="true" rows="2" >
                         <f:facet name="header">
                             Lista Usuarios
                         </f:facet>
