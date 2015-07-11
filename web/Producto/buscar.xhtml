@@ -14,7 +14,7 @@
             </ui:define>
 
             <ui:define name="content">
-                <h2/> Lista Usuarios <h2/>
+        
                 <hr/>
                 <h:form id="ListaProductos">
                     <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
@@ -30,6 +30,9 @@
                         </p:column>
                         <p:column headerText="DESCRIPCION">
                             <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+                         <p:column>
+                             <p:button value="Agregar"/>
                         </p:column>
                         
                     </p:dataTable>
