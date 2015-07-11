@@ -8,6 +8,7 @@ package BeanRequest;
 import DAO.DAOProducto;
 import HibernateUtil.HibernateUtil;
 import Pojos.Producto;
+import static java.lang.System.out;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,7 +33,8 @@ public class MbrProducto {
     public MbrProducto() {
        
     }
-    public List<Producto> listarProductos(){
+    
+    public List<Producto> getLista(){
         this.transaccion=null;
         this.sesion=null;
         try{
@@ -41,7 +43,7 @@ public class MbrProducto {
             this.transaccion= this.sesion.beginTransaction();
             this.listaProducto= daoProducto.listar(this.sesion);
             this.transaccion.commit();
-            return listaProducto;
+            return this.listaProducto;
         }
         catch (Exception ex){
              if(this.transaccion!=null)
@@ -54,14 +56,14 @@ public class MbrProducto {
         finally{
                if(this.sesion!=null)
             {
-                this.sesion.close();
+//                this.sesion.close();
             }
         }
         
     }
     
 
-    public List<Producto> getListaProducto() {
+    public List<Producto> getListaProducto() {     
         return listaProducto;
     }
 

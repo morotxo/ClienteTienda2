@@ -21,7 +21,7 @@ public class DAOProducto implements InterfaceProducto {
     public List<Producto> listar(Session sesion) throws Exception {
      String hql= "from Producto";
      Query qt = sesion.createQuery(hql);
-     List<Producto> listaProductos = (List)qt.list();
+     List<Producto> listaProductos = (List<Producto>)qt.list();
      return listaProductos;
      
     }
