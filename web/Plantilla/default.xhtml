@@ -35,12 +35,13 @@
                         </p:menuitem>
                     <p:menuitem>
                         <h:form>
-                            <p:commandButton style="margin-left:20px; color:black" type="button" value="Buscar" icon="ui-icon-search" />
+                            <p:commandButton style="margin-left:20px; color:black" action="/Producto/buscar.xhtml" type="button" value="Buscar" icon="ui-icon-search"/>
                         </h:form>
                     </p:menuitem>
                     <p:submenu style="margin-left:80px" label="Iniciar Sesion" icon="ui-icon-pencil">                    
                         <p:menuitem  value="Ingresar al sistema" outcome="/Cliente/Loguin" icon="ui-icon-key"  />
                         <p:menuitem  value="Registrarse " outcome="/Cliente/Registrar" icon="ui-icon-person" />
+                        <p:menuitem  value="listar productos" outcome="/Producto/buscar" icon="ui-icon-person" />
                     </p:submenu>
                 </p:menubar>
             </h:form>            
