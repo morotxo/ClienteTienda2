@@ -23,19 +23,19 @@
                 <div id="divSesionUsuario">
                     <span>
                          <b>Usuario: </b>
-                         <p:outputLabel value="#{mbSLogin.correo==null ? 'Hello. Sing In' : mbSLogin.correo}"/>
+                         <p:outputLabel value="#{mbSLogin.correo==null ? 'Identificate' : mbSLogin.correo}"/>
                     </span>
                    
                     <p:commandButton value="Logout" icon="ui-icon-locked" action="#{mbSLogin.cerrarSesion()}"/>
                 </div>
                 <p:menubar>
-                    <p:menuitem style="color:black; margin-left:50px" value="Inicio" icon="ui-icon-home" outcome="/index" />
+                    <p:menuitem style="color:black ; margin-left:50px" outcome="/Home/inicio" value="Inicio" icon="ui-icon-home"/>
                         <p:menuitem>
-                            <p:inputText style="margin-left:230px" placeholder="Buscar Productos" size="80"/>            
+                            <p:inputText style="margin-left:230px" value="#{mbrProducto.valorbusqueda}" placeholder="Buscar Productos" size="80"/>            
                         </p:menuitem>
                     <p:menuitem>
                         <h:form>
-                            <p:commandButton style="margin-left:20px; color:black" action="/Producto/buscar.xhtml" type="button" value="Buscar" icon="ui-icon-search"/>
+                            <p:commandButton style="margin-left:20px; color:black" action="#{mbrProducto.buscar}" value="Buscar"></p:commandButton>  
                         </h:form>
                     </p:menuitem>
                     <p:submenu style="margin-left:80px" label="Iniciar Sesion" icon="ui-icon-pencil">                    

@@ -57,7 +57,7 @@ public class MbSLogin implements Serializable{
                     HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     httpSession.setAttribute(correo, this.correo);
                     
-                    return "/index";
+//                    return "/index";
                 }                
             }
             
@@ -90,7 +90,7 @@ public class MbSLogin implements Serializable{
         this.correo=null;
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         httpSession.invalidate();        
-        return "/index";
+        return "";
     }
     
     public String getCorreo() {
