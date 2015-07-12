@@ -18,10 +18,13 @@
                 <hr/>
                 <h:form id="ListaProductos">
                     <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaPoductos" var="item" value="#{mbrProducto.listaProducto}" paginator="true" rows="5" >
+                    <p:dataTable id="tablaPoductos" var="item" value="#{mbrProducto.listaProducto}" paginator="true" rows="5" style="border-style: none">
                         <f:facet name="header">
                             Lista Usuarios
                         </f:facet>
+                        <p:column headerText="PRODUCTO">
+                            
+                        </p:column>
                         <p:column headerText="CATEGORIA">
                             <h:outputText value="#{item.categoria.nombre}"/>
                         </p:column>
@@ -30,6 +33,12 @@
                         </p:column>
                         <p:column headerText="DESCRIPCION">
                             <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+                        <p:column headerText="DISPONIBLES">
+                            <h:outputText value="#{item.stock}"/>
+                        </p:column>
+                        <p:column headerText="PRECIO">
+                            <h:outputText value="#{item.precio}"/>
                         </p:column>
                          <p:column>
                              <p:button value="Agregar"/>
