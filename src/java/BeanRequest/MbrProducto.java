@@ -7,6 +7,7 @@ package BeanRequest;
 
 import DAO.DAOProducto;
 import HibernateUtil.HibernateUtil;
+import Pojos.Imagen;
 import Pojos.Producto;
 import static java.lang.System.out;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import org.hibernate.Transaction;
 @ManagedBean
 @SessionScoped
 public class MbrProducto {
-    List<Producto>listaProducto ;
+    List<Imagen>listaProducto ;
     private Session sesion;
     private String valorbusqueda;
     private Transaction transaccion; 
@@ -34,7 +35,7 @@ public class MbrProducto {
      * Creates a new instance of MbrProducto
      */
     public MbrProducto() {
-        listaProducto= new ArrayList<Producto>();
+        listaProducto= new ArrayList<Imagen>();
        
     }
     
@@ -46,7 +47,7 @@ public class MbrProducto {
             DAOProducto daoProducto = new DAOProducto();
             this.sesion=HibernateUtil.getSessionFactory().openSession();
             this.transaccion= this.sesion.beginTransaction();
-            this.listaProducto= daoProducto.listar(this.sesion,this.getValorbusqueda());
+            this.listaProducto= daoProducto.listarImagenPortada(this.sesion,this.getValorbusqueda());
             this.transaccion.commit();
             return "/Producto/buscar.xhtml?faces-redirect=true";
         }
@@ -77,14 +78,15 @@ public class MbrProducto {
 //        
 //    }
 
-    public List<Producto> getListaProducto() {     
-        out.println(listaProducto.size());
+    public List<Imagen> getListaProducto() {
         return listaProducto;
     }
 
-    public void setListaProducto(List<Producto> listaProducto) {
+    public void setListaProducto(List<Imagen> listaProducto) {
         this.listaProducto = listaProducto;
     }
+
+  
 
     public String getValorbusqueda() {
         return valorbusqueda;

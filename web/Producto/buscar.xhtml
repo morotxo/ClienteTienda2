@@ -23,22 +23,22 @@
                             Lista Usuarios
                         </f:facet>
                         <p:column headerText="PRODUCTO">
-                            
+                            <h:outputText value="#{item.url}"/>
                         </p:column>
                         <p:column headerText="CATEGORIA">
-                            <h:outputText value="#{item.categoria.nombre}"/>
+                            <h:outputText value="#{item.producto.categoria}"/>
                         </p:column>
                         <p:column headerText="MARCA">
-                            <h:outputText value="#{item.marca}"/>
+                            <h:outputText value="#{item.producto.marca}"/>
                         </p:column>
                         <p:column headerText="DESCRIPCION">
-                            <h:outputText value="#{item.descripcion}"/>
+                            <h:outputText value="#{item.producto.descripcion}"/>
                         </p:column>
                         <p:column headerText="DISPONIBLES">
-                            <h:outputText value="#{item.stock}"/>
+                            <h:outputText value="#{item.producto.stock}"/>
                         </p:column>
                         <p:column headerText="PRECIO">
-                            <h:outputText value="#{item.precio}"/>
+                            <h:outputText value="#{item.producto.precio}"/>
                         </p:column>
                          <p:column>
                              <p:button value="Agregar"/>

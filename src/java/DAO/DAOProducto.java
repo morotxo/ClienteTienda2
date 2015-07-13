@@ -7,6 +7,7 @@ package DAO;
 
 import HibernateUtil.HibernateUtil;
 import Interface.InterfaceProducto;
+import Pojos.Imagen;
 import Pojos.Producto;
 import static java.lang.System.out;
 import java.util.List;
@@ -35,39 +36,12 @@ public class DAOProducto implements InterfaceProducto {
         out.println("Numero producots: "+listaProductos.size());
         return listaProductos;
     }
-
-    @Override
-    public List<Producto> buscarProducto(String busqueda) throws Exception {
-        this.transaccion=null;
-        this.sesion=null;
-        try{
-            this.sesion=HibernateUtil.getSessionFactory().openSession();
-            this.transaccion= this.sesion.beginTransaction();
-            String hql = "from Producto where marca=:busqueda";
-            Query qt = sesion.createQuery(hql);
-            qt.setParameter("valorbusqueda", busqueda);
-            List <Producto>resultado=(List<Producto>)qt.list();
-            this.transaccion.commit();
-            return resultado;
-//            return "/Producto/buscar.xhtml?faces-redirect=true";
-        }
-        catch (Exception ex){
-             if(this.transaccion!=null)
-            {
-                this.transaccion.rollback();
-            }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Fatal:", "por favor contacte con su administrador"));
-            return null;
-        }
-        finally{
-               if(this.sesion!=null)
-            {
-                this.sesion.close();
-            }
-        }
+    
+    public List<Imagen> listarImagenPortada( Session sesion, String valorBusqueda)
+    {
+        String hql = "from Imagen, Producto where Imagen.id_producto=Producto.idProducto and imagen.descripcion like 'busqueda'";
+        Query qt = sesion.createQuery(hql);
+        List<Imagen> resultado = (List<Imagen>)qt.list();
+        return resultado;
     }
-    
-    
-       
-    
 }

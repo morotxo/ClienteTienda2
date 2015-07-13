@@ -17,6 +17,6 @@ public interface InterfaceProducto {
     
     public List<Producto> listar(Session sesion, String valorbusqueda) throws Exception;
     
-    public List<Producto> buscarProducto(String busqueda)throws Exception;
+   
     
 }
