@@ -5,16 +5,19 @@
  */
 package ClienteRest;
 
+import Pojos.Factura;
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 
 /**
- * Jersey REST client generated for REST resource:CategoriaFacadeREST
- * [com.mycompany.proyectotiendaonline.categoria]<br>
+ * Jersey REST client generated for REST resource:FacturaFacadeREST
+ * [com.mycompany.proyectotiendaonlinejsf.factura]<br>
  * USAGE:
  * <pre>
- *        NewJerseyClient client = new NewJerseyClient();
+ *        restFactura client = new restFactura();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -22,14 +25,14 @@ import javax.ws.rs.client.WebTarget;
  *
  * @author david13mo
  */
-public class categoriaRest {
+public class restFactura {
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://192.168.0.102:8080/ProyectoTiendaOnline/webresources";
+    private static final String BASE_URI = "http://localhost:8080/ProyectoTiendaOnlineJSF/webresources";
 
-    public categoriaRest() {
+    public restFactura() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("com.mycompany.proyectotiendaonline.categoria");
+        webTarget = client.target(BASE_URI).path("com.mycompany.proyectotiendaonlinejsf.factura");
     }
 
     public String countREST() throws ClientErrorException {
@@ -83,9 +86,9 @@ public class categoriaRest {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
 
-    public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
+    public List<Factura> findAll_JSON() throws ClientErrorException {
         WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Factura>>(){});
     }
 
     public void remove(String id) throws ClientErrorException {

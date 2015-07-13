@@ -5,16 +5,19 @@
  */
 package ClienteRest;
 
+import Pojos.Detalle;
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 
 /**
- * Jersey REST client generated for REST resource:ProductoFacadeREST
- * [com.mycompany.proyectotiendaonline.producto]<br>
+ * Jersey REST client generated for REST resource:DetalleFacadeREST
+ * [com.mycompany.proyectotiendaonlinejsf.detalle]<br>
  * USAGE:
  * <pre>
- *        productoRest client = new productoRest();
+ *        restDetalle client = new restDetalle();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -22,14 +25,14 @@ import javax.ws.rs.client.WebTarget;
  *
  * @author david13mo
  */
-public class productoRest {
+public class restDetalle {
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://192.168.0.102:8080/ProyectoTiendaOnline/webresources";
+    private static final String BASE_URI = "http://localhost:8080/ProyectoTiendaOnlineJSF/webresources";
 
-    public productoRest() {
+    public restDetalle() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("com.mycompany.proyectotiendaonline.producto");
+        webTarget = client.target(BASE_URI).path("com.mycompany.proyectotiendaonlinejsf.detalle");
     }
 
     public String countREST() throws ClientErrorException {
@@ -55,7 +58,6 @@ public class productoRest {
     public <T> T find_JSON(Class<T> responseType, String id) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
-        System.out.println(resource.getUri());
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
@@ -79,14 +81,14 @@ public class productoRest {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
+//    public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+//    }
 
-    public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
+    public List<Detalle> findAll_JSON() throws ClientErrorException {
         WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Detalle>>(){});
     }
 
     public void remove(String id) throws ClientErrorException {

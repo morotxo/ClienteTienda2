@@ -30,7 +30,10 @@ public class DAOCategoria  {
         out.println("Numero categorias: "+listaProductos.size());
         return listaProductos;
     }
-    
+   public void guardar(Session sesion, Categoria unaCategoria)
+   {
+       sesion.save(unaCategoria);
+   }
     
        
     
