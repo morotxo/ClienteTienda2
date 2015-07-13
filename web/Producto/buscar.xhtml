@@ -16,14 +16,16 @@
                <h:form>    
                     <p:selectManyCheckbox id="grid2" value="#{mbrProducto.selectedCategorias}"  layout="pageDirection">
                         <f:selectItems value="#{mbrProducto.listacategorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.idCategoria}" /><br></br>
-                    </p:selectManyCheckbox>
-                        
+                    </p:selectManyCheckbox>                   
+                   <p:commandButton value="Filtrar" update=":lista:tablaPoductos" action="#{mbrProducto.mostrar}" icon="ui-icon-check"/>
+                   
+                   <p:separator/>
                     <p:menu>
                         <p:submenu label="Carrito Compras">
                             <p:menuitem value="Ingresar" icon="ui-icon-cart" outcome="/Carrito/Carrito"/>                            
                         </p:submenu> 
                     </p:menu>
-                    <p:commandButton update=":lista:tablaPoductos" action="#{mbrProducto.mostrar}" icon="ui-icon-reload"/>
+                    
                 </h:form>            
             </ui:define>
 

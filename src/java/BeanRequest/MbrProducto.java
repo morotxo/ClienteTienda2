@@ -140,19 +140,14 @@ public class MbrProducto {
     
   
     public String AgregarCarrito(){      
-        if (seleccionado==null){
-            FacesMessage mensaje = new FacesMessage("producto");
-            FacesContext.getCurrentInstance().addMessage(null, mensaje);   
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error de Acceso: "," Usuario o Contraseña Incorrecta"));
+        if (seleccionado==null){               
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFORMACION", "Seleccione un Producto y Proceda a Agregar"));
+            
             return "/Producto/buscar.xhtml?faces-redirect=true";
         }else{
             carro.add(seleccionado.getP());    
-            totalPagar=totalPagar+seleccionado.getP().getPrecio();
-            out.print(totalPagar);
-            FacesMessage mensaje = new FacesMessage("producto");
-            FacesContext.getCurrentInstance().addMessage(null, mensaje); 
-            out.print(carro.size());
+            totalPagar=totalPagar+seleccionado.getP().getPrecio(); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "PRODUCTO AGREGADO AL CARRITO", " "+seleccionado.getP().getMarca()));
             return "/Carrito/Cantidad.xhtml?faces-redirect=true";
         }            
     }  
