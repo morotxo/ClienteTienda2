@@ -55,6 +55,7 @@ public class DAOProducto implements InterfaceProducto {
          
     }
     public void guardar(Session sesion, Producto unProducto){
+        
         sesion.save(unProducto);        
     }    
 }
