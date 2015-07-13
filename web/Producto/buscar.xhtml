@@ -35,6 +35,7 @@
                     <p:dataTable id="tablaPoductos" var="item"
                                  selectionMode="single"
                                  rowKey="#{item.p.idProducto}"
+                                 selection="#{mbrProducto.seleccionado}"
                                  value="#{mbrProducto.listaProducto}" paginator="true" rows="5">
                         <f:facet name="header">
                             Lista Usuarios

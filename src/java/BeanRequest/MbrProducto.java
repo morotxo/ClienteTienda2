@@ -37,12 +37,16 @@ public class MbrProducto {
     private String valorbusqueda;
     private Transaction transaccion; 
     private String marca, descripcion;
+    private List<Producto> carro;
+    private objetoResultado seleccionado;
+    private Producto selectCarrito;
+    private Double totalPagar=0.0;
     /**
      * Creates a new instance of MbrProducto
      */
     public MbrProducto() {
         listaProducto= new ArrayList<>();
-       
+        carro= new ArrayList<>();
     }
     
     public String buscar(){
@@ -131,6 +135,48 @@ public class MbrProducto {
         }
     }
     
+  
+    public String AgregarCarrito(){      
+        if (seleccionado==null){
+            FacesMessage mensaje = new FacesMessage("producto");
+            FacesContext.getCurrentInstance().addMessage(null, mensaje);   
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error de Acceso: "," Usuario o Contraseña Incorrecta"));
+            return "/Producto/buscar.xhtml?faces-redirect=true";
+        }else{
+            carro.add(seleccionado.getP());    
+            totalPagar=totalPagar+seleccionado.getP().getPrecio();
+            out.print(totalPagar);
+            FacesMessage mensaje = new FacesMessage("producto");
+            FacesContext.getCurrentInstance().addMessage(null, mensaje); 
+            out.print(carro.size());
+            return "/Carrito/Cantidad.xhtml?faces-redirect=true";
+        }            
+    }  
+    
+    
+    public void EliminarCarrito(){
+        out.print(selectCarrito.getMarca());
+        
+        if(selectCarrito==null){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
+        }else{
+            carro.remove(selectCarrito);
+            totalPagar=totalPagar-selectCarrito.getPrecio();
+        }    
+    }
+    
+    
+    public String Compra(){   
+        
+            return "/Home/inicio.xhtml?faces-redirect=true";
+        
+        
+        
+    }
+    
+    
+    
 //    
 //    
 //    public String buscar() throws Exception
@@ -163,6 +209,38 @@ public class MbrProducto {
 
     public void setValorbusqueda(String valorbusqueda) {
         this.valorbusqueda = valorbusqueda;
+    }
+
+    public List<Producto> getCarro() {
+        return carro;
+    }
+
+    public void setCarro(List<Producto> carro) {
+        this.carro = carro;
+    }
+
+    public objetoResultado getSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(objetoResultado seleccionado) {
+        this.seleccionado = seleccionado;
+    }
+
+    public Double getTotalPagar() {
+        return totalPagar;
+    }
+
+    public void setTotalPagar(Double totalPagar) {
+        this.totalPagar = totalPagar;
+    }
+
+    public Producto getSelectCarrito() {
+        return selectCarrito;
+    }
+
+    public void setSelectCarrito(Producto selectCarrito) {
+        this.selectCarrito = selectCarrito;
     }
     
     

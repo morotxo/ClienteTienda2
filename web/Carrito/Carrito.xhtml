@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -16,7 +19,40 @@
             </ui:define>
 
             <ui:define name="content">
-                HOLA MUNDO ESTE ES EL CARRITO DE COMPRAS
+                <h:form id="CarritoCompras">
+                    <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
+                    <p:dataTable id="tablaCarritoPoductos" var="item" value="#{mbrProducto.carro}" 
+                                 selectionMode="single"
+                                 selection="#{mbrProducto.selectCarrito}"
+                                 rowKey="#{item.idProducto}">
+                       <f:facet name="header">
+                           <h3>Carrito de comparas</h3>
+                           <h4>TOTAL A PAGAR = 
+                            <h:outputText id="valorpagar" value="#{mbrProducto.totalPagar}" /></h4>
+                        </f:facet>
+                        <p:column headerText="MARCA">
+                            <h:outputText value="#{item.marca}"/>
+                        </p:column>
+                        <p:column headerText="DESCRIPCION">
+                            <h:outputText value="#{item.descripcion}"/>
+                        </p:column>                       
+                        <p:column headerText="PRECIO">
+                            <h:outputText value="#{item.precio}"/>
+                        </p:column>
+                        <p:column headerText="CANTIDAD">
+                            <h:inputText> </h:inputText> 
+                        </p:column>
+                        
+                        <p:column>
+                            <p:commandButton value="Eliminar" update="tablaCarritoPoductos" action="#{mbrProducto.EliminarCarrito}" ajax="true"/>
+                        </p:column>  
+                    
+                    </p:dataTable>
+                        
+                    
+                        
+                    <p:commandButton value="Comprar" action="#{mbrProducto.Compra()}"></p:commandButton>
+                </h:form>
             </ui:define>
 
         </ui:composition>

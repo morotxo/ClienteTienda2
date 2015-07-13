@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Plantilla/default.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>CONFIRMAR CANTIDAD</h2>
+                <hr/>
+                <h:form id="Cantidad">
+                    <p:messages id="mensajeGeneral" showDetail="true" autoUpdate="true" closable="true"/> 
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Marca"  for="marca"/>
+                        <h:outputText id="valorpagar" value="#{mbrProducto.seleccionado.marca}" /></h4>
+                        <p:outputLabel value="Descripcion"  for="descripcion"/>
+                        <h:outputText id="valorpagar" value="#{mbrProducto.seleccionado.marca}" /></h4>
+                        <p:outputLabel value="Precio"  for="precio"/>
+                        <h:outputText id="valorpagar" value="#{mbrProducto.seleccionado.marca}" /></h4>
+                        <p:outputLabel value="Stock"  for="strock"/>
+                        <h:outputText id="valorpagar" value="#{mbrProducto.seleccionado.marca}" /></h4>
+                        <p:outputLabel value="Cantidad"  for="cantidad"/>
+                        <p:inputText id="apellido" label="Apellido" value="#{mbrCliente.getUnCliente().apellido}" size="50">             
+                              <f:validator validatorId="validadorEspacio"/>
+                        </p:inputText>                       
+                        <p:commandButton value="Registrarse" action="#{mbrCliente.registrar()}"/>
+                        
+                    </h:panelGrid>
+                    
+               </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
