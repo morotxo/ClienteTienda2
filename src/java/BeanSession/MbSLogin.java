@@ -35,6 +35,8 @@ public class MbSLogin implements Serializable{
     
     private Session session;
     private Transaction transaccion;
+    HttpSession httpSession;
+    boolean estado=false;
     
     public MbSLogin() {
     }
@@ -54,8 +56,9 @@ public class MbSLogin implements Serializable{
         
             if(cliente!=null){
                 if(cliente.getPassword().equals(Encriptado.sha512(this.contrasena))){
-                    HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                    httpSession.setAttribute(correo, this.correo);         
+                    httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    httpSession.setAttribute(correo, this.correo); 
+                    estado=true;
                     return "/Home/inicio";       
                 }                
             }
@@ -88,7 +91,8 @@ public class MbSLogin implements Serializable{
         this.contrasena=null;
         this.correo=null;
         HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        httpSession.invalidate();        
+        httpSession.invalidate();  
+        estado=false;
         return "/Home/inicio";
     }
 
@@ -114,6 +118,22 @@ public class MbSLogin implements Serializable{
 
     public void setSession(Session session) {
         this.session = session;
+    }
+
+    public HttpSession getHttpSession() {
+        return httpSession;
+    }
+
+    public void setHttpSession(HttpSession httpSession) {
+        this.httpSession = httpSession;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
     

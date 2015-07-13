@@ -5,6 +5,7 @@
  */
 package BeanRequest;
 
+import BeanSession.MbSLogin;
 import Clases.objetoResultado;
 import DAO.DAOCategoria;
 import DAO.DAOProducto;
@@ -41,12 +42,14 @@ public class MbrProducto {
     private objetoResultado seleccionado;
     private Producto selectCarrito;
     private Double totalPagar=0.0;
+    private MbSLogin verificacionLogin;
     /**
      * Creates a new instance of MbrProducto
      */
     public MbrProducto() {
         listaProducto= new ArrayList<>();
         carro= new ArrayList<>();
+        verificacionLogin= new MbSLogin();
     }
     
     public String buscar(){
@@ -137,19 +140,14 @@ public class MbrProducto {
     
   
     public String AgregarCarrito(){      
-        if (seleccionado==null){
-            FacesMessage mensaje = new FacesMessage("producto");
-            FacesContext.getCurrentInstance().addMessage(null, mensaje);   
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error de Acceso: "," Usuario o Contraseña Incorrecta"));
+        if (seleccionado==null){               
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFORMACION", "Seleccione un Producto y Proceda a Agregar"));
+            
             return "/Producto/buscar.xhtml?faces-redirect=true";
         }else{
             carro.add(seleccionado.getP());    
-            totalPagar=totalPagar+seleccionado.getP().getPrecio();
-            out.print(totalPagar);
-            FacesMessage mensaje = new FacesMessage("producto");
-            FacesContext.getCurrentInstance().addMessage(null, mensaje); 
-            out.print(carro.size());
+            totalPagar=totalPagar+seleccionado.getP().getPrecio(); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "PRODUCTO AGREGADO AL CARRITO", " "+seleccionado.getP().getMarca()));
             return "/Carrito/Cantidad.xhtml?faces-redirect=true";
         }            
     }  
@@ -168,9 +166,12 @@ public class MbrProducto {
     
     
     public String Compra(){   
-        
-            return "/Home/inicio.xhtml?faces-redirect=true";
-        
+        if(verificacionLogin.isEstado()==false){
+            return "/Cliente/Loguin.xhtml?faces-redirect=true";
+            
+        } else {   
+            return "/Producto/Comprar.xhtml?faces-redirect=true";
+        }
         
         
     }
