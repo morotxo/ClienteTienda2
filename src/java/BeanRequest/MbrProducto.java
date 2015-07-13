@@ -5,8 +5,11 @@
  */
 package BeanRequest;
 
+import Clases.objetoResultado;
+import DAO.DAOCategoria;
 import DAO.DAOProducto;
 import HibernateUtil.HibernateUtil;
+import Pojos.Categoria;
 import Pojos.Imagen;
 import Pojos.Producto;
 import static java.lang.System.out;
@@ -26,8 +29,11 @@ import org.hibernate.Transaction;
 @ManagedBean
 @SessionScoped
 public class MbrProducto {
-    List<Imagen>listaProducto ;
+    List<objetoResultado>listaProducto ;
     private Session sesion;
+    private List<String> selectedCategorias;
+    private List<objetoResultado> oldlistaProducto;
+    private List<Categoria> listacategorias;
     private String valorbusqueda;
     private Transaction transaccion; 
     private String marca, descripcion;
@@ -35,11 +41,14 @@ public class MbrProducto {
      * Creates a new instance of MbrProducto
      */
     public MbrProducto() {
-        listaProducto= new ArrayList<Imagen>();
+        listaProducto= new ArrayList<>();
        
     }
     
     public String buscar(){
+        if (listacategorias==null){
+            updateLista();
+        }
         out.println("Buscar: "+getValorbusqueda());
         this.transaccion=null;
         this.sesion=null;
@@ -48,7 +57,8 @@ public class MbrProducto {
             this.sesion=HibernateUtil.getSessionFactory().openSession();
             this.transaccion= this.sesion.beginTransaction();
             this.listaProducto= daoProducto.listarImagenPortada(this.sesion,this.getValorbusqueda());
-            this.transaccion.commit();
+            this.oldlistaProducto=listaProducto;
+            this.transaccion.commit();       
             return "/Producto/buscar.xhtml?faces-redirect=true";
         }
         catch (Exception ex){
@@ -67,6 +77,59 @@ public class MbrProducto {
         }
         
     }
+    public void mostrar(){
+        if (selectedCategorias.isEmpty()){
+            listaProducto=oldlistaProducto;
+        }else{
+            listaProducto = new ArrayList<>();
+            for (objetoResultado p : oldlistaProducto) {
+                for (String sC : selectedCategorias) {
+                    String idC = String.valueOf(p.getP().getCategoria().getIdCategoria());
+                    if (idC.equals(sC)) {
+                        listaProducto.add(p);
+                        break;
+                    }
+                }
+            }
+            for (String sC : selectedCategorias) {
+                out.println(sC);
+            }
+        }
+        
+        for (objetoResultado lP : listaProducto) {
+            out.println(lP.getP().getDescripcion());
+        }
+    }
+    public List<String> getSelectedCategorias() {
+        return selectedCategorias;
+    }
+
+    public void setSelectedCategorias(List<String> selectedCategorias) {
+        this.selectedCategorias = selectedCategorias;
+    }
+    public void updateLista(){
+        this.transaccion=null;
+        this.sesion=null;
+        try{
+            DAOCategoria daoCategoria = new DAOCategoria();
+            this.sesion=HibernateUtil.getSessionFactory().openSession();
+            this.transaccion= this.sesion.beginTransaction();
+            this.listacategorias= daoCategoria.getAll(this.sesion);
+            this.transaccion.commit();
+        }
+        catch (Exception ex){
+             if(this.transaccion!=null)
+            {
+                this.transaccion.rollback();
+            }
+        }
+        finally{
+               if(this.sesion!=null)
+            {
+                //this.sesion.close();
+            }
+        }
+    }
     
 //    
 //    
@@ -78,14 +141,20 @@ public class MbrProducto {
 //        
 //    }
 
-    public List<Imagen> getListaProducto() {
+    public List<objetoResultado> getListaProducto() {
         return listaProducto;
     }
 
-    public void setListaProducto(List<Imagen> listaProducto) {
+    public void setListaProducto(List<objetoResultado> listaProducto) {
         this.listaProducto = listaProducto;
     }
+    public List<Categoria> getListacategorias() {
+        return listacategorias;
+    }
 
+    public void setListacategorias(List<Categoria> listacategorias) {
+        this.listacategorias = listacategorias;
+    }
   
 
     public String getValorbusqueda() {

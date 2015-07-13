@@ -12,38 +12,54 @@
 
             <ui:define name="top">
             </ui:define>
+            <ui:define name="left">
+               <h:form>    
+                    <p:selectManyCheckbox id="grid2" value="#{mbrProducto.selectedCategorias}"  layout="pageDirection">
+                        <f:selectItems value="#{mbrProducto.listacategorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.idCategoria}" /><br></br>
+                    </p:selectManyCheckbox>
+                        
+                    <p:menu>
+                        <p:submenu label="Carrito Compras">
+                            <p:menuitem value="Ingresar" icon="ui-icon-cart" outcome="/Carrito/Carrito"/>                            
+                        </p:submenu> 
+                    </p:menu>
+                    <p:commandButton update=":lista:tablaPoductos" action="#{mbrProducto.mostrar}" icon="ui-icon-reload"/>
+                </h:form>            
+            </ui:define>
 
             <ui:define name="content">
         
                 <hr/>
-                <h:form id="ListaProductos">
+                <h:form id="lista">
                     <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaPoductos" var="item" value="#{mbrProducto.listaProducto}" paginator="true" rows="5" style="border-style: none">
+                    <p:dataTable id="tablaPoductos" var="item"
+                                 selectionMode="single"
+                                 rowKey="#{item.p.idProducto}"
+                                 value="#{mbrProducto.listaProducto}" paginator="true" rows="5">
                         <f:facet name="header">
                             Lista Usuarios
                         </f:facet>
                         <p:column headerText="PRODUCTO">
-                            <h:outputText value="#{item.url}"/>
-                        </p:column>
-                        <p:column headerText="CATEGORIA">
-                            <h:outputText value="#{item.producto.categoria}"/>
+                            <p:graphicImage name="#{item.im.url}" width="150px" height="100px" />
+                            
+<!--                            <h:outputText value="#{item.im.url}"/>-->
                         </p:column>
                         <p:column headerText="MARCA">
-                            <h:outputText value="#{item.producto.marca}"/>
+                            <h:outputText value="#{item.p.marca}"/>
                         </p:column>
                         <p:column headerText="DESCRIPCION">
-                            <h:outputText value="#{item.producto.descripcion}"/>
+                            <h:outputText value="#{item.p.descripcion}"/>
                         </p:column>
                         <p:column headerText="DISPONIBLES">
-                            <h:outputText value="#{item.producto.stock}"/>
-                        </p:column>
-                        <p:column headerText="PRECIO">
-                            <h:outputText value="#{item.producto.precio}"/>
-                        </p:column>
-                         <p:column>
-                             <p:button value="Agregar"/>
+                            <h:outputText value="#{item.p.stock}"/>
+                        </p:column>                        
+                        <p:column headerText="PRECIO UNITARIO">
+                            <h:outputText value="#{item.p.precio}"/>
                         </p:column>
                         
+                        <p:column>
+                             <p:commandButton value="Agregar" actionListener="#{mbrProducto.AgregarCarrito}" />
+                        </p:column>
                     </p:dataTable>
                     
                 </h:form>

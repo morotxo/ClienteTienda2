@@ -35,7 +35,7 @@
                         </p:menuitem>
                     <p:menuitem>
                         <h:form>
-                            <p:commandButton style="margin-left:20px; color:black" action="#{mbrProducto.buscar}" value="Buscar"></p:commandButton>  
+                            <p:commandButton style="margin-left:20px; color:black" action="#{mbrProducto.buscar()}" value="Buscar"></p:commandButton>  
                         </h:form>
                     </p:menuitem>
                     <p:submenu style="margin-left:80px" label="Iniciar Sesion" icon="ui-icon-pencil">                    
@@ -51,20 +51,8 @@
           
             <div id="left">
                 <ui:insert name="left"></ui:insert>
-                <h:form>            
-                <p:menu>
-                        <p:submenu label="Categorias">
-                            <p:menuitem value="Ceulares"  icon="ui-icon-gear" />
-                            <p:menuitem value="Computadoras"  icon="ui-icon-gear" />
-                            <p:menuitem value="Portatiles"  icon="ui-icon-gear" />
-                            <p:menuitem value="Portatiles"  icon="ui-icon-gear" />
-                        </p:submenu>  
-                   
-                        <p:submenu label="Carrito Compras">
-                            <p:menuitem value="Ingresar" icon="ui-icon-cart" outcome="/Carrito/Carrito"/>                            
-                        </p:submenu> 
-                </p:menu>
-                </h:form>            
+                
+                
 
             </div>
             
