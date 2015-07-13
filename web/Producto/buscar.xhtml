@@ -31,7 +31,7 @@
         
                 <hr/>
                 <h:form id="lista">
-                    <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
+                    <p:messages autoUpdate="true" showDetail="true"/>
                     <p:dataTable id="tablaPoductos" var="item"
                                  selectionMode="single"
                                  rowKey="#{item.p.idProducto}"

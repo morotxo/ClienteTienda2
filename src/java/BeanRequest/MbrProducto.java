@@ -5,6 +5,7 @@
  */
 package BeanRequest;
 
+import BeanSession.MbSLogin;
 import Clases.objetoResultado;
 import DAO.DAOCategoria;
 import DAO.DAOProducto;
@@ -41,12 +42,14 @@ public class MbrProducto {
     private objetoResultado seleccionado;
     private Producto selectCarrito;
     private Double totalPagar=0.0;
+    private MbSLogin verificacionLogin;
     /**
      * Creates a new instance of MbrProducto
      */
     public MbrProducto() {
         listaProducto= new ArrayList<>();
         carro= new ArrayList<>();
+        verificacionLogin= new MbSLogin();
     }
     
     public String buscar(){
@@ -168,9 +171,12 @@ public class MbrProducto {
     
     
     public String Compra(){   
-        
-            return "/Home/inicio.xhtml?faces-redirect=true";
-        
+        if(verificacionLogin.isEstado()==false){
+            return "/Cliente/Loguin.xhtml?faces-redirect=true";
+            
+        } else {   
+            return "/Producto/Comprar.xhtml?faces-redirect=true";
+        }
         
         
     }

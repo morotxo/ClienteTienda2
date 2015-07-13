@@ -20,7 +20,7 @@
 
             <ui:define name="content">
                 <h:form id="CarritoCompras">
-                    <p:growl id ="mensajeGeneral" showDetail="true" sticky="false"/>
+                    <p:messages autoUpdate="true" showDetail="true"/>
                     <p:dataTable id="tablaCarritoPoductos" var="item" value="#{mbrProducto.carro}" 
                                  selectionMode="single"
                                  selection="#{mbrProducto.selectCarrito}"
